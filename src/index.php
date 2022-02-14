@@ -100,8 +100,61 @@
         $prTable.=$prRows.'</table>';
         echo $prTable;
     }
+    function mobileSubcatogaryProduct($products){
+        $prTable='<table id="productTable">
+                    <tr>
+                        <th>Catogary</th>
+                        <th>Sub Catogary</th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Brand</th>
+                    </tr>';
+        $prRows='';
+        foreach($products as $key => $catogary){
+            foreach($catogary as $ke => $subCatogary){
+                foreach($subCatogary as $k => $value){
+                    if($ke == "Mobile"){
+                        $prRows.='<tr>
+                                <td>'.$key.'</td>'.
+                                '<td>'.$ke.'</td>
+                                <td>'.$value['id'].'</td>
+                                <td>'.$value['name'].'</td>
+                                <td>'.$value['brand'].'</td>'.
+                            '</tr>';
+                    }
+                    
+                }
+            }
+        }
+        $prTable.=$prRows.'</table>';
+        echo $prTable;
+    }
+    
+    function productWithBrandName($products,$brandName){
+        $prList='<div id="productList">
+                <h2>Products with brand name samsung</h2>';
+        $prRows='';
+        foreach($products as $key => $catogary){
+            foreach($catogary as $ke => $subCatogary){
+                foreach($subCatogary as $k => $value){
+                    if($value['brand'] == $brandName){
+                        $prRows.='<p><b>Product Id</b>: '.$value['id'].'</p>
+                                <p><b>Product Name: </b>'.$value['name'].'</p>
+                                <p><b>Subcatogary: </b>'.$ke.'</p>'.
+                                '<p><b>Catogary: </b>'.$key.'</p><br>';
+                    }
+                    
+                }
+            }
+        }
+        $prList.=$prRows.'</div>';
+        echo $prList;
+    }
     catogaryWiseProduct($products);
+    mobileSubcatogaryProduct($products);
+    productWithBrandName($products,"Samsung");
 
+    
 ?>
 
 <!DOCTYPE html>
