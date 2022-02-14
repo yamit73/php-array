@@ -1,0 +1,15 @@
+#productTable, tr,th, td{
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px;
+}
+#productTable th{
+    font-weight: bold;
+    font-size: 22px;
+}
+#productTable{
+    width:60%;
+    margin: auto;
+    text-align: center;
+    margin-top: 5%;
+}
