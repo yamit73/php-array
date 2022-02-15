@@ -182,7 +182,19 @@
         $prTable.=$prRows.'</table>';
         echo $prTable;
     }
-    
+    function deleteWithProductId(&$products,$prId){
+        foreach($products as $key => $catogary){
+            foreach($catogary as $ke => $subCatogary){
+                foreach($subCatogary as $k => $value){
+                    if($value['id'] == $prId){
+                        unset($products[$key][$ke][$k]);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    deleteWithProductId($products,"PR003");
     catogaryWiseProduct($products);
     mobileSubcatogaryProduct($products);
     productWithBrandName($products,"Samsung");
