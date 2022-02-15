@@ -101,6 +101,7 @@
         echo $prTable;
     }
     function mobileSubcatogaryProduct($products){
+        echo '<h2 class="centered">Product with mobile subcatogary</h2>';
         $prTable='<table id="productTable">
                     <tr>
                         <th>Catogary</th>
@@ -131,17 +132,17 @@
     }
     
     function productWithBrandName($products,$brandName){
-        $prList='<div id="productList">
-                <h2>Products with brand name samsung</h2>';
+        echo '<h2 class="centered">Product with brand name</h2>';
+        $prList='<div id="productList">';
         $prRows='';
         foreach($products as $key => $catogary){
             foreach($catogary as $ke => $subCatogary){
                 foreach($subCatogary as $k => $value){
                     if($value['brand'] == $brandName){
                         $prRows.='<p><b>Product Id</b>: '.$value['id'].'</p>
-                                <p><b>Product Name: </b>'.$value['name'].'</p>
-                                <p><b>Subcatogary: </b>'.$ke.'</p>'.
-                                '<p><b>Catogary: </b>'.$key.'</p><br>';
+                                 <p><b>Product Name: </b>'.$value['name'].'</p>
+                                 <p><b>Subcatogary: </b>'.$ke.'</p>'.
+                                 '<p><b>Catogary: </b>'.$key.'</p><br>';
                     }
                     
                 }
@@ -150,9 +151,44 @@
         $prList.=$prRows.'</div>';
         echo $prList;
     }
+    function updateProduct($products,$prId,$newName){
+        echo '<h2 class="centered">Updated table</h2>';
+        $prTable='<table id="productTable">
+                    <tr>
+                        <th>Catogary</th>
+                        <th>Sub Catogary</th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Brand</th>
+                    </tr>';
+        $prRows='';
+        foreach($products as $key => $catogary){
+            foreach($catogary as $ke => $subCatogary){
+                foreach($subCatogary as $k => $value){
+                    if($value['id'] == $prId){
+                        $value['name']=$newName;
+                    }
+                    $prRows.='<tr>
+                    <td>'.$key.'</td>'.
+                    '<td>'.$ke.'</td>
+                    <td>'.$value['id'].'</td>
+                    <td>'.$value['name'].'</td>
+                    <td>'.$value['brand'].'</td>'.
+                    '</tr>';
+                    
+                }
+            }
+        }
+        $prTable.=$prRows.'</table>';
+        echo $prTable;
+    }
+    
     catogaryWiseProduct($products);
     mobileSubcatogaryProduct($products);
     productWithBrandName($products,"Samsung");
+    updateProduct($products,"PR002","BIG-555");
+    
+    
 
     
 ?>
